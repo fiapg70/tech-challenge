@@ -1,0 +1,46 @@
+server:
+  port: 9991
+  servlet:
+    context-path: /api
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    connectionTimeout: 30000
+    idleTimeout: 30000
+    max-open-prepared-statements: 250
+    maxLifetime: 2000000
+    maximumPoolSize: 5
+    minimumIdle: 3
+    pool-prepared-statements: true
+    poolName: SpringBootHikariCP
+    hikari:
+      connection-timeout: '60000'
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    pathmatch:
+      matching-strategy: "path-pattern-parser"
+  flyway:
+    locations: classpath:db/migration #, classpath:db/callback
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 864000000 # 10 day
+      refresh-token:
+        expiration: 6048000000 # 70 days

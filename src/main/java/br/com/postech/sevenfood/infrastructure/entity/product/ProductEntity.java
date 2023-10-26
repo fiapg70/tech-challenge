@@ -2,6 +2,8 @@ package br.com.postech.sevenfood.infrastructure.entity.product;
 
 import br.com.postech.sevenfood.core.domain.Product;
 import br.com.postech.sevenfood.infrastructure.entity.domain.AuditDomain;
+import br.com.postech.sevenfood.infrastructure.productcategory.ProductCategoryEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
@@ -52,11 +54,20 @@ public class ProductEntity extends AuditDomain {
     @NotNull(message = "o campo \"price\" é obrigario")
     private BigDecimal price;
 
+    @Schema(description = "Resident of the User.",
+            example = "1", required = true, ref = "User")
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "product_category_id", unique = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private ProductCategoryEntity productCategoryEntity;
+
     public void update(Long id, Product product) {
         this.id = id;
         this.name = product.getName();
         this.pic = product.getPic();
         this.description = product.getDescription();
         this.price = product.getPrice();
+       // this.productCategoryEntity = product.getProductCategory();
     }
 }

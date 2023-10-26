@@ -2,10 +2,10 @@ package br.com.postech.sevenfood.application.api.resources;
 
 import br.com.postech.sevenfood.application.api.dto.request.ProductRequest;
 import br.com.postech.sevenfood.application.api.dto.response.ProductResponse;
-import br.com.postech.sevenfood.application.mapper.ProductMapper;
+import br.com.postech.sevenfood.application.api.mappper.ProductApiMapper;
 import br.com.postech.sevenfood.commons.util.RestUtils;
 import br.com.postech.sevenfood.core.domain.Product;
-import br.com.postech.sevenfood.core.ports.in.*;
+import br.com.postech.sevenfood.core.ports.in.product.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -40,7 +39,7 @@ public class ProductResources {
     private final FindByIdProductPort findByIdProductPort;
     private final FindProductsPort findProductsPort;
     private final UpdateProductPort updateProductPort;
-    private final ProductMapper productMapper;
+    private final ProductApiMapper productApiMapper;
 
     @Operation(summary = "Create a new Product", tags = {"products", "post"})
     @ApiResponses({
@@ -53,10 +52,10 @@ public class ProductResources {
     public ResponseEntity<ProductResponse> save(@Valid @RequestBody ProductRequest request) {
         try {
             log.info("Chegada" + request);
-            Product product = productMapper.fromRquest(request);
+            Product product = productApiMapper.fromRquest(request);
             Product saved = createProductPort.save(product);
 
-            ProductResponse productResponse = productMapper.fromEntidy(saved);
+            ProductResponse productResponse = productApiMapper.fromEntidy(saved);
             if (productResponse == null) {
                 return ResponseEntity.ok().build();
             }
@@ -78,10 +77,10 @@ public class ProductResources {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ProductResponse> update(@PathVariable("id") Long id, @Valid @RequestBody ProductRequest request) {
-        var product = productMapper.fromRquest(request);
+        var product = productApiMapper.fromRquest(request);
         Product updated = updateProductPort.update(id, product);
 
-        ProductResponse productResponse = productMapper.fromEntidy(updated);
+        ProductResponse productResponse = productApiMapper.fromEntidy(updated);
         if (productResponse == null) {
             return ResponseEntity.ok().build();
         }
@@ -99,7 +98,7 @@ public class ProductResources {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<ProductResponse>> findAll() {
         List<Product> productList = findProductsPort.findAll();
-        List<ProductResponse> productResponse = productMapper.map(productList);
+        List<ProductResponse> productResponse = productApiMapper.map(productList);
         return productResponse.isEmpty() ?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(productResponse);
@@ -118,7 +117,7 @@ public class ProductResources {
     public ResponseEntity<ProductResponse> findOne(@PathVariable("id") Long id) {
         Product productSaved = findByIdProductPort.findById(id);
         if (productSaved != null) {
-            ProductResponse productResponse = productMapper.fromEntidy(productSaved);
+            ProductResponse productResponse = productApiMapper.fromEntidy(productSaved);
             return ResponseEntity.ok(productResponse);
         }
 

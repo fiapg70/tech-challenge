@@ -1,4 +1,4 @@
-package br.com.postech.sevenfood.core.ports.in;
+package br.com.postech.sevenfood.core.ports.in.product;
 
 import br.com.postech.sevenfood.core.domain.Product;
 

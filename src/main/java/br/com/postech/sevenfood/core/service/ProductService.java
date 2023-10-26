@@ -1,7 +1,7 @@
 package br.com.postech.sevenfood.core.service;
 
 import br.com.postech.sevenfood.core.domain.Product;
-import br.com.postech.sevenfood.core.ports.in.*;
+import br.com.postech.sevenfood.core.ports.in.product.*;
 import br.com.postech.sevenfood.core.ports.out.ProductRepositoryPort;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductService implements CreateProductPort, UpdateProductPort, FindByIdProductPort, FindProductsPort, DeleteProductPort {
 
-    //private final ProductRepository productRepository;
-    //private final ProductMapper productMapper;
-    ProductRepositoryPort productRepository;
+    private final ProductRepositoryPort productRepository;
 
     @Override
     public Product save(Product product) {

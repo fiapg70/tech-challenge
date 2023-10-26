@@ -7,6 +7,8 @@ server:
       enabled: false
 
 spring:
+  main:
+    allow-circular-references: true
   datasource:
     url: ${DATABASE_URL}
     username: ${DATABASE_USERNAME}

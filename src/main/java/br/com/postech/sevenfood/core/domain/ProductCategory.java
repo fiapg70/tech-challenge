@@ -13,20 +13,18 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 //@Tag(name = "Resident object")
-public class Product implements Serializable {
+public class ProductCategory implements Serializable {
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private String pic;
-    private ProductCategory productCategory;
 
-    public void update(Long id, Product product) {
+    public void update(Long id, ProductCategory product) {
         this.id = id;
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();
         this.pic = product.getPic();
-        this.productCategory = product.getProductCategory();
     }
 }

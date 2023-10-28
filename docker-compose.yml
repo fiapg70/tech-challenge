@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+  nginx:
+    container_name: some-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - postgres-network
+  app:
+    container_name: sevenfood-api
+    image: psi/sevenfood-api:1.0.0
+    build: ./
+    restart: always
+    ports:
+      - "9991:9991"
+    environment:
+      - DATABASE_URL=jdbc:postgresql://db:5432/sevenfooddb
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=Postgres2019!
+    depends_on:
+      - db
+    networks:
+      - postgres-network
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Postgres2019!
+      POSTGRES_DB: sevenfooddb
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    volumes:
+      - /opt/postgres/data:/var/lib/postgresql/data
+      #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      #- ./var:/var/lib/postgresql/data
+      #- /c/tmp/var:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "infra@sevenfood.com.br"
+      PGADMIN_DEFAULT_PASSWORD: "PgAdmin2019!"
+    ports:
+      - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - postgres-network
+networks:
+  postgres-network:
+    driver: bridge

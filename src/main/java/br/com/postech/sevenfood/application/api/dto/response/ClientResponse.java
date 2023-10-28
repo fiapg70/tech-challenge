@@ -10,14 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Tag(name = "Product object")
-public class RestaurantResponse implements Serializable {
+@Tag(name = "Client object")
+public class ClientResponse implements Serializable {
 
     @Schema(description = "Unique identifier of the Driver.",
             example = "1", required = true)
@@ -31,6 +30,8 @@ public class RestaurantResponse implements Serializable {
     @Schema(description = "Description of the Product.",
             example = "Vicente", required = true)
     @Size(min = 0, max = 255)
-    private String cnpj;
+    private String cpf;
+
+    private RestaurantRequest restaurant;
 
 }

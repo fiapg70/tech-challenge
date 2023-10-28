@@ -13,12 +13,14 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 //@Tag(name = "Resident object")
-public class ProductCategory implements Serializable {
+public class Restaurant implements Serializable {
     private Long id;
     private String name;
+    private String cnpj;
 
-    public void update(Long id, ProductCategory product) {
+    public void update(Long id, Restaurant product) {
         this.id = id;
         this.name = product.getName();
+        this.cnpj = product.getCnpj();
     }
 }

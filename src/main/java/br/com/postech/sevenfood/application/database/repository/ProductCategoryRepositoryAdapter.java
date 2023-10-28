@@ -3,7 +3,7 @@ package br.com.postech.sevenfood.application.database.repository;
 import br.com.postech.sevenfood.application.database.mapper.ProductCategoryMapper;
 import br.com.postech.sevenfood.core.domain.ProductCategory;
 import br.com.postech.sevenfood.core.ports.out.ProductCategoryRepositoryPort;
-import br.com.postech.sevenfood.infrastructure.productcategory.ProductCategoryEntity;
+import br.com.postech.sevenfood.infrastructure.entity.productcategory.ProductCategoryEntity;
 import br.com.postech.sevenfood.infrastructure.repository.ProductCategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

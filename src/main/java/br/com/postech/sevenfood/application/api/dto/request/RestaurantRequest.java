@@ -1,6 +1,5 @@
 package br.com.postech.sevenfood.application.api.dto.request;
 
-import br.com.postech.sevenfood.core.domain.ProductCategory;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -10,14 +9,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Tag(name = "Product object")
-public class ProductRequest implements Serializable {
+public class RestaurantRequest implements Serializable {
 
     @Schema(description = "Unique identifier of the Driver.",
             example = "1", required = true)
@@ -31,15 +29,6 @@ public class ProductRequest implements Serializable {
     @Schema(description = "Description of the Product.",
             example = "Vicente", required = true)
     @Size(min = 0, max = 255)
-    private String description;
+    private String cnpj;
 
-    @Schema(description = "value the Product.",
-            example = "V$", required = true)
-    private BigDecimal price;
-
-    @Schema(description = "value the Product.",
-            example = "V$", required = true)
-    private String pic;
-
-    private ProductCategory productCategory;
 }

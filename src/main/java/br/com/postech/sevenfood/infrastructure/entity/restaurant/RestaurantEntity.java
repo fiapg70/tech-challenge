@@ -1,7 +1,6 @@
-package br.com.postech.sevenfood.infrastructure.productcategory;
+package br.com.postech.sevenfood.infrastructure.entity.restaurant;
 
-import br.com.postech.sevenfood.core.domain.Product;
-import br.com.postech.sevenfood.core.domain.ProductCategory;
+import br.com.postech.sevenfood.core.domain.Restaurant;
 import br.com.postech.sevenfood.infrastructure.entity.domain.AuditDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -13,16 +12,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "tb_product_category")
+@Table(name = "tb_restaurant")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Tag(name = "Product object")
-public class ProductCategoryEntity extends AuditDomain {
+@Tag(name = "Restaurant object")
+public class RestaurantEntity extends AuditDomain {
 
     @Schema(description = "Unique identifier of the Product.",
             example = "1", required = true)
@@ -38,8 +35,16 @@ public class ProductCategoryEntity extends AuditDomain {
     @Column(name = "name", length = 255)
     private String name;
 
-    public void update(Long id, ProductCategory productCategory) {
+    @Schema(description = "cnpj of the Product.",
+            example = "V$", required = true)
+    @NotNull(message = "o campo \"cnpj\" é obrigario")
+    @Size(min = 3, max = 255)
+    @Column(name = "cnpj", length = 255)
+    private String cnpj;
+
+    public void update(Long id, Restaurant restaurant) {
         this.id = id;
-        this.name = productCategory.getName();
+        this.name = restaurant.getName();
+        this.cnpj = restaurant.getCnpj();
     }
 }

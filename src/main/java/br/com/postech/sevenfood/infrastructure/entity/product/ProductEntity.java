@@ -2,7 +2,7 @@ package br.com.postech.sevenfood.infrastructure.entity.product;
 
 import br.com.postech.sevenfood.core.domain.Product;
 import br.com.postech.sevenfood.infrastructure.entity.domain.AuditDomain;
-import br.com.postech.sevenfood.infrastructure.productcategory.ProductCategoryEntity;
+import br.com.postech.sevenfood.infrastructure.entity.productcategory.ProductCategoryEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -60,7 +60,7 @@ public class ProductEntity extends AuditDomain {
     @OneToOne
     @JoinColumn(name = "product_category_id", unique = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private ProductCategoryEntity productCategoryEntity;
+    private ProductCategoryEntity productCategory;
 
     public void update(Long id, Product product) {
         this.id = id;

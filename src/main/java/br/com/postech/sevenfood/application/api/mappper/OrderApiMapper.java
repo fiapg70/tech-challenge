@@ -14,6 +14,7 @@ public interface OrderApiMapper {
 
     @Mapping(source = "code", target = "code")
     @Mapping(source = "products", target = "products")
+    @Mapping(source = "client", target = "client")
     Order fromRquest(OrderRequest request);
 
     @InheritInverseConfiguration

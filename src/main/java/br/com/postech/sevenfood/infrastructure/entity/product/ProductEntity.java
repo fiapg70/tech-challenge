@@ -1,6 +1,7 @@
 package br.com.postech.sevenfood.infrastructure.entity.product;
 
 import br.com.postech.sevenfood.core.domain.Product;
+import br.com.postech.sevenfood.infrastructure.entity.client.ClientEntity;
 import br.com.postech.sevenfood.infrastructure.entity.domain.AuditDomain;
 import br.com.postech.sevenfood.infrastructure.entity.productcategory.ProductCategoryEntity;
 import br.com.postech.sevenfood.infrastructure.entity.restaurant.RestaurantEntity;
@@ -55,15 +56,21 @@ public class ProductEntity extends AuditDomain {
     @NotNull(message = "o campo \"price\" é obrigario")
     private BigDecimal price;
 
-    @Schema(description = "Resident of the User.",
+    @Schema(description = "Restaurant of the User.",
             example = "1", required = true, ref = "User")
     @NotNull
     @OneToOne
     @JoinColumn(name = "product_category_id", unique = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private RestaurantEntity productCategory;
+    private ProductCategoryEntity productCategory;
 
-    //TODO - adicionar restaurante
+    @Schema(description = "Restaurant of the User.",
+            example = "1", required = true, ref = "User")
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "restaurant_id", unique = true)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private RestaurantEntity restaurant;
 
     public void update(Long id, Product product) {
         this.id = id;

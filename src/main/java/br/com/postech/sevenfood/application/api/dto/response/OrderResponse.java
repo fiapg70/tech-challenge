@@ -1,6 +1,7 @@
 package br.com.postech.sevenfood.application.api.dto.response;
 
 import br.com.postech.sevenfood.core.domain.Product;
+import br.com.postech.sevenfood.infrastructure.entity.client.ClientEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -33,4 +34,5 @@ public class OrderResponse implements Serializable {
     @Size(min = 0, max = 255)
     private List<Product> products;
 
+    private ClientEntity client;
 }

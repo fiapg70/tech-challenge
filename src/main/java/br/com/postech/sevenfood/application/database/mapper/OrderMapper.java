@@ -13,6 +13,7 @@ public interface OrderMapper {
 
     @Mapping(source = "code", target = "code")
     @Mapping(source = "products", target = "products")
+    @Mapping(source = "client", target = "client")
     OrderEntity fromModelTpEntity(Order order);
 
     @InheritInverseConfiguration

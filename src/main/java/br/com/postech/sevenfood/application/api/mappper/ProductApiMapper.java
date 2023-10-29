@@ -17,6 +17,7 @@ public interface ProductApiMapper {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "pic", target = "pic")
     @Mapping(source = "productCategory", target = "productCategory")
+    @Mapping(source = "restaurant", target = "restaurant")
     Product fromRquest(ProductRequest request);
 
     @InheritInverseConfiguration

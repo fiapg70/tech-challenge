@@ -1,5 +1,6 @@
 package br.com.postech.sevenfood.core.domain;
 
+import br.com.postech.sevenfood.infrastructure.entity.restaurant.RestaurantEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Product implements Serializable {
     private BigDecimal price;
     private String pic;
     private ProductCategory productCategory;
+    private RestaurantEntity restaurant;
 
     public void update(Long id, Product product) {
         this.id = id;
@@ -28,5 +30,6 @@ public class Product implements Serializable {
         this.price = product.getPrice();
         this.pic = product.getPic();
         this.productCategory = product.getProductCategory();
+        this.restaurant = product.getRestaurant();
     }
 }

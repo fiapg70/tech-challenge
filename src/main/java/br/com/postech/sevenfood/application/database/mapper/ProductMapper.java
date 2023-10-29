@@ -17,6 +17,7 @@ public interface ProductMapper {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "pic", target = "pic")
     @Mapping(source = "productCategory", target = "productCategory")
+    @Mapping(source = "restaurant", target = "restaurant")
     ProductEntity fromModelTpEntity(Product product);
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")

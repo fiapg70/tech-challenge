@@ -1,6 +1,7 @@
 package br.com.postech.sevenfood.application.api.dto.request;
 
 import br.com.postech.sevenfood.core.domain.ProductCategory;
+import br.com.postech.sevenfood.core.domain.Restaurant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -42,4 +43,6 @@ public class ProductRequest implements Serializable {
     private String pic;
 
     private ProductCategory productCategory;
+
+    private Restaurant restaurant;
 }

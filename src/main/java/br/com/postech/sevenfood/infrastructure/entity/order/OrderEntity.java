@@ -41,6 +41,8 @@ public class OrderEntity extends AuditDomain {
     @Column(name = "code", length = 255)
     private String code;
 
+    //TODO - adicionar client
+
     @ManyToMany
     @JoinTable(name = "tb_order_product",
             joinColumns = @JoinColumn(name = "order_id"),

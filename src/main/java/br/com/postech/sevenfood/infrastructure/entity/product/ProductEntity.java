@@ -63,6 +63,8 @@ public class ProductEntity extends AuditDomain {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private RestaurantEntity productCategory;
 
+    //TODO - adicionar restaurante
+
     public void update(Long id, Product product) {
         this.id = id;
         this.name = product.getName();

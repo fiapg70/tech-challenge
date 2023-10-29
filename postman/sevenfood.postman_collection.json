@@ -46,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Frutos1\"\n}",
+							"raw": "{\n    \"name\":\"Bebida gasosa\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -127,7 +127,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:9991/api/v1/product-categories",
+							"raw": "http://localhost:9991/api/v1/product-categories/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -136,7 +136,8 @@
 							"path": [
 								"api",
 								"v1",
-								"product-categories"
+								"product-categories",
+								"1"
 							]
 						}
 					},
@@ -528,6 +529,137 @@
 								"api",
 								"v1",
 								"clients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "http://localhost:9991/api/v1/product-categories",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Product 4\",\n    \"cpf\": \"23423423423\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9991/api/v1/client/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9991/api/v1/product-categories Copy 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"10b232e4-e1c6-4ad4-beff-649606737b56\",\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"Product 2\",\n            \"description\": \"Product 2\",\n            \"price\": 9.9,\n            \"pic\": \"dsas\",\n            \"productCategory\": {\n                \"id\": 1,\n                \"name\": \"Frutos\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9991/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9991/api/v1/product-categories Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9991/api/v1/orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9991/api/v1/product-categories Copy 3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9991/api/v1/orders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:9991/api/v1/product-categories Copy 4",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9991/api/v1/orders/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"orders",
 								"1"
 							]
 						}

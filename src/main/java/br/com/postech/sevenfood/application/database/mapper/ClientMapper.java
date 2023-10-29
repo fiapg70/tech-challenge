@@ -15,6 +15,7 @@ public interface ClientMapper {
     @Mapping(source = "cpf", target = "cpf")
     @Mapping(source = "restaurant", target = "restaurant")
     ClientEntity fromModelTpEntity(Client client);
+
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
     Client fromEntityToModel(ClientEntity clientEntity);

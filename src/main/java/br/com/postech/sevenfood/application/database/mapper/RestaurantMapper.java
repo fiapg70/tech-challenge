@@ -17,6 +17,5 @@ public interface RestaurantMapper {
     @InheritInverseConfiguration
     @Mapping(target = "id", source = "id")
     Restaurant fromEntityToModel(RestaurantEntity restaurantEntity);
-
     List<Restaurant> map(List<RestaurantEntity> restaurantEntities);
 }

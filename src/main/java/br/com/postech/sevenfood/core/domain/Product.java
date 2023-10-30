@@ -21,7 +21,7 @@ public class Product implements Serializable {
     private BigDecimal price;
     private String pic;
     private ProductCategory productCategory;
-    private RestaurantEntity restaurant;
+    private Restaurant restaurant;
 
     public void update(Long id, Product product) {
         this.id = id;

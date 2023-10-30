@@ -1,7 +1,10 @@
 package br.com.postech.sevenfood.application.api.resources;
 
+import br.com.postech.sevenfood.core.domain.Product;
+import br.com.postech.sevenfood.core.domain.ProductCategory;
 import br.com.postech.sevenfood.core.domain.Restaurant;
-import br.com.postech.sevenfood.core.service.RestaurantService;
+import br.com.postech.sevenfood.core.service.ProductService;
+import br.com.postech.sevenfood.infrastructure.entity.restaurant.RestaurantEntity;
 import br.com.postech.sevenfood.util.JsonUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -13,21 +16,21 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import java.math.BigDecimal;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @ImportAutoConfiguration(exclude = FlywayAutoConfiguration.class)
 @TestPropertySource("classpath:application-test.properties")
-public class RestaurantResourcesTest {
+public class ProductResourcesTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -36,38 +39,62 @@ public class RestaurantResourcesTest {
     private ObjectMapper mapper;
 
     @Autowired
-    private RestaurantService service;
+    private ProductService service;
+
+    private ProductCategory getProductCategory() {
+        return ProductCategory.builder()
+                .id(1L)
+                .name("Bebida")
+                .build();
+    }
 
     private Restaurant getRestaurant() {
         return Restaurant.builder()
-                .name("Seven Food - Filial")
+                .id(1L)
+                .name("Seven Food")
                 .cnpj("02.365.347/0001-63")
                 .build();
     }
 
-    private Restaurant getRestaurantUpdate() {
-        return Restaurant.builder()
-                .id(1l)
-                .name("Seven Food - Filial")
-                .cnpj("02.365.347/0001-63")
+    private Product getProduct() {
+        return Product.builder()
+                .name("Bebida - coca cola")
+                .pic("hhh")
+                .price(BigDecimal.TEN)
+                .description("Coca-Cola")
+                .productCategory(getProductCategory())
+                .restaurant(getRestaurant())
                 .build();
     }
+
+    private Product getProductUpdate() {
+        return Product.builder()
+                .id(1l)
+                .name("Bebida - coca cola")
+                .pic("hhh")
+                .price(BigDecimal.TEN)
+                .description("Coca-Cola")
+                .productCategory(getProductCategory())
+                .restaurant(getRestaurant())
+                .build();
+    }
+
 
     @Test
     void findsTaskById() throws Exception {
         Long id = 1l;
 
-        mockMvc.perform(get("/v1/restaurants/{id}", id))
+        mockMvc.perform(get("/v1/products/{id}", id))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Seven Food - Filial"));
+                .andExpect(jsonPath("$.name").value("Bebida"));
     }
 
     @Test
     public void getAll() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/v1/restaurants")
+                        .get("/v1/products")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -78,10 +105,10 @@ public class RestaurantResourcesTest {
 
     @Test
     public void create() throws Exception {
-        String create = JsonUtil.getJson(getRestaurant());
+        String create = JsonUtil.getJson(getProduct());
 
         mockMvc.perform( MockMvcRequestBuilders
-                        .post("/v1/restaurants")
+                        .post("/v1/products")
                         .content(create)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -92,21 +119,21 @@ public class RestaurantResourcesTest {
 
     @Test
     public void update() throws Exception {
-        String update = JsonUtil.getJson(getRestaurantUpdate());
+        String update = JsonUtil.getJson(getProductUpdate());
 
         mockMvc.perform( MockMvcRequestBuilders
-                        .put("/v1/restaurants/{id}", 1)
+                        .put("/v1/products/{id}", 1)
                         .content(update)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Seven Food - Filial"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Bebida"));
     }
 
     @Test
-    public void deleteEmployeeAPI() throws Exception
+    public void delete() throws Exception
     {
-        mockMvc.perform( MockMvcRequestBuilders.delete("/v1/restaurants/{id}", 1) )
+        mockMvc.perform( MockMvcRequestBuilders.delete("/v1/products/{id}", 1) )
                 .andExpect(status().isOk());
     }
 }

@@ -55,6 +55,10 @@ Certifique-se de ter o seguinte configurado em seu sistema:
    ```sh
    git clone https://github.com/fiapg70/tech-challenge-fase-1.git
 
-Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgres que estã na raiz e executar o comando: 
+Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgres que estã na raiz e executar o comando:
    ```sh
-   docker-compose up -d (para iniciar) ou docker-compose down (para finalizar)
+   docker-compose up -d
+
+Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgres que estã na raiz e executar o comando para finalizar o banco: 
+   ```sh
+   docker-compose down (para finalizar)

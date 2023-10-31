@@ -47,7 +47,15 @@ Siga estas etapas simples para instalar e executar o aplicativo em seu dispositi
 Certifique-se de ter o seguinte configurado em seu sistema:
 
 - Ambiente de desenvolvimento Java verssão 17 instalado
-- Docker instalado
+- Docker e Docker Compose instalados
+
+## Stack utilizada
+
+* Java 17
+* Spring boot 3
+* Intellij
+* PostGres (PGAdmin)
+* Docker && Docker Compose
 
 ### 🛠️ Passos de Instalação
 
@@ -55,10 +63,52 @@ Certifique-se de ter o seguinte configurado em seu sistema:
    ```sh
    git clone https://github.com/fiapg70/tech-challenge-fase-1.git
 
-Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgres que estã na raiz e executar o comando:
+### Docker Compose
+
+Utilize o comando `docker compose up` para "construir" (*build*) e subir o servidor local, expondo a porta 3000 em `localhost`. Além do container da `api` também subirá o serviço `db` com o banco de dados de desenvolvimento.
+
+**IMPORTANTE:** Esta API está programada para ser acessada a partir de `http://localhost:9991/api` e o banco de dados utiliza a porta `5432`. Certifique-se de que não existam outros recursos ocupando as portas `5432` / `16543` e `9991` antes de subir o projeto.
+
+Para derrubar o serviço, execute o comando `docker compose down`.
+
+### Configurações
+
+Para rodar o projeto deverã colocar as variaveis de ambiente:
+
+DATABASE_PASSWORD=Postgres2019!;DATABASE_URL=jdbc:postgresql://localhost:5432/sevenfood;DATABASE_USERNAME=postgres
+
+ou fazer um .env com essas configurações:
+
+DATABASE_PASSWORD=Postgres2019!
+DATABASE_URL=jdbc:postgresql://localhost:5432/sevenfood
+DATABASE_USERNAME=postgres
+
+### Rodando a aplicação sem IDE ou em VM ou EC2.
+
+1. Faça na pasta principal rodar o docker, nele contém postgres a compilação do Dockerfile da API e ngnix commo nginx reverse proxy.
    ```sh
    docker-compose up -d
 
-Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgres que estã na raiz e executar o comando para finalizar o banco: 
-   ```sh
-   docker-compose down (para finalizar)
+### Endpoints
+
+Esta API fornece documentação no padrão OpenAPI.
+Os endpoints disponíveis, suas descrições e dados necessários para requisição podem ser consultados e testados em ```http://localhost:9991/api/swagger-ui/index.html```.
+
+O repositório do projeto também fornece uma coleção do Postman para testes em todos os endpoints.
+
+Collection do postman: ![Collection Postman](postman/sevenfood.postman_collection.json)
+
+## Desenvolvimento do projeto
+
+### Diagramas de fluxo
+
+Foram utilizadas técnicas de Domain Driven Design para definição dos fluxos:
+
+- Realização do pedido e pagamento
+  ![diagrama do fluxo de pedido e pagamento](docs/domain-storytelling/images/pedido-pagamento.png)
+
+- Preparação e entrega do pedido
+  ![diagrama do fluxo de preparação e entrega](docs/domain-storytelling/images/preparo-retirada.png)
+
+- Diagrama com a separação dos contextos delimitados
+  ![diagrama dos contextos delimitados](docs/domain-storytelling/images/contextos-delimitados.png)

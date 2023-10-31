@@ -105,7 +105,7 @@ O repositório do projeto também fornece uma coleção do Postman para testes e
 Definição dos fluxos:
 
 - Realização do pedido e pagamento
-  ![diagrama do fluxo de pedido e pagamento](docs/diagrama do fluxo de pedido e pagamento.jpeg)
+  ![diagrama do fluxo de pedido e pagamento](docs/diagrama_do_fluxo_de_pedido_e_pagamento.png)
 
 - Preparação e entrega do pedido
-  ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.jpeg)
+  ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.png)

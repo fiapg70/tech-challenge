@@ -46,13 +46,16 @@ Siga estas etapas simples para instalar e executar o aplicativo em seu dispositi
 
 Certifique-se de ter o seguinte configurado em seu sistema:
 
-- Ambiente de desenvolvimento Java instalado
-- Android Studio ou ambiente de desenvolvimento Android semelhante
+- Ambiente de desenvolvimento Java verssão 17 instalado
+- Docker instalado
 
 ### 🛠️ Passos de Instalação
 
 1. Faça um clone do repositório para o seu ambiente local usando o seguinte comando:
    ```sh
-   git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
+   git clone https://github.com/fiapg70/tech-challenge-fase-1.git
 
 
+Para rodar no intellij é necessário inicar o postgres, para isso ir na pasta postgress que estã na raiz e executar o comando: 
+   ```sh
+   docker-compose up -d 

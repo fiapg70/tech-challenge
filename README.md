@@ -96,7 +96,7 @@ Os endpoints disponíveis, suas descrições e dados necessários para requisiç
 
 O repositório do projeto também fornece uma coleção do Postman para testes em todos os endpoints.
 
-Collection do postman: ![Collection Postman](postman/sevenfood.postman_collection.json)
+[Collection Postman](postman/sevenfood.postman_collection.json)
 
 ## Desenvolvimento do projeto
 

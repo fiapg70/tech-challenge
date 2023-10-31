@@ -79,8 +79,8 @@ DATABASE_PASSWORD=Postgres2019!;DATABASE_URL=jdbc:postgresql://localhost:5432/se
 
 ou fazer um .env com essas configurações:
 
-DATABASE_PASSWORD=Postgres2019!
-DATABASE_URL=jdbc:postgresql://localhost:5432/sevenfood
+DATABASE_PASSWORD=Postgres2019! \
+DATABASE_URL=jdbc:postgresql://localhost:5432/sevenfood \
 DATABASE_USERNAME=postgres
 
 ### Rodando a aplicação sem IDE ou em VM ou EC2.

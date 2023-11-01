@@ -89,7 +89,7 @@ Para derrubar o serviço, execute o comando `docker compose down`.
 
 ### Configurações
 
-Para rodar o projeto deverã colocar as variaveis de ambiente:
+Para rodar o projeto deverá colocar as variaveis de ambiente:
 
 DATABASE_PASSWORD=Postgres2019!;DATABASE_URL=jdbc:postgresql://localhost:5432/sevenfood;DATABASE_USERNAME=postgres
 
@@ -133,6 +133,6 @@ Definição dos fluxos:
   ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.png)
 
 
-### Desenvilmento dos códigos em ingles
+### Desenvilmento dos códigos em inglës
 
 O uso do inglës é para facilitar a leitura e entendimento do código, pois é uma linguagem universal de escrita de cõdigo-fonte. 

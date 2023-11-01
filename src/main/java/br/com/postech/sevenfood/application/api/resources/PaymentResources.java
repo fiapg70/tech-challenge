@@ -38,7 +38,7 @@ public class PaymentResources {
     @Operation(summary = "Pay order", tags = {"payments", "post"})
     @ApiResponses({
             @ApiResponse(responseCode = "200", content = {
-                    @Content(schema = @Schema(implementation = OrderResources.class), mediaType = "application/json")}),
+                    @Content(schema = @Schema(implementation = PaymentResources.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @PostMapping
     @ResponseStatus(HttpStatus.OK)

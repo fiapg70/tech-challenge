@@ -110,6 +110,13 @@ DATABASE_USERNAME=postgres
 1. O containar da API está hospedado no docker hub, com a seguinte URL (https://hub.docker.com/r/rogeriofontes/sevenfood-api). Para baixar a imagem e rodar o container, execute o seguinte comando:
    ```sh
    docker pull rogeriofontes/sevenfood-api:1.0.0
+
+2. Para rodar o container, execute o seguinte comando:
+   ```sh
+   docker run -it -e DATABASE_PASSWORD=Postgres2019! \
+    -e DATABASE_URL=jdbc:postgresql://<<IP do HOST>>:5432/sevenfood \
+    -e DATABASE_USERNAME=postgres \
+    -t rogeriofontes/sevenfood-api:1.0.0
    
 ### Endpoints
 

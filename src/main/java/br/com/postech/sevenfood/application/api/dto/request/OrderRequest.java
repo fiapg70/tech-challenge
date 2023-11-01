@@ -1,5 +1,6 @@
 package br.com.postech.sevenfood.application.api.dto.request;
 
+import br.com.postech.sevenfood.core.domain.Client;
 import br.com.postech.sevenfood.core.domain.Product;
 import br.com.postech.sevenfood.infrastructure.entity.client.ClientEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,12 +18,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Tag(name = "Product object")
+@Tag(name = "Order object")
 public class OrderRequest implements Serializable {
-
-    @Schema(description = "Unique identifier of the Driver.",
-            example = "1", required = true)
-    private Long id;
 
     @Schema(description = "Name of the Product.",
             example = "Vicente", required = true)
@@ -30,9 +27,11 @@ public class OrderRequest implements Serializable {
     private String code;
 
     @Schema(description = "Description of the Product.",
-            example = "Vicente", required = true)
+            example = "Vicente", required = true, ref = "Product")
     @Size(min = 0, max = 255)
     private List<Product> products;
 
-    private ClientEntity client;
+    @Schema(description = "Client of the Product.",
+            example = "Luara Balestero da Mata", required = true, ref = "Client")
+    private Client client;
 }

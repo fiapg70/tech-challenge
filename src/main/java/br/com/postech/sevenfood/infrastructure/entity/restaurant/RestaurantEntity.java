@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 @Table(name = "tb_restaurant")
@@ -40,6 +41,7 @@ public class RestaurantEntity extends AuditDomain {
     @NotNull(message = "o campo \"cnpj\" é obrigario")
     @Size(min = 3, max = 255)
     @Column(name = "cnpj", length = 255)
+    @CNPJ(message = "CNPJ inválido")
     private String cnpj;
 
     public void update(Long id, Restaurant restaurant) {

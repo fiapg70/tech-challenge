@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.io.Serializable;
 
@@ -14,21 +15,18 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Tag(name = "Product object")
+@Tag(name = "Restaurant object")
 public class RestaurantRequest implements Serializable {
 
-    @Schema(description = "Unique identifier of the Driver.",
-            example = "1", required = true)
-    private Long id;
-
-    @Schema(description = "Name of the Product.",
-            example = "Vicente", required = true)
+    @Schema(description = "Name of the Restaurant.",
+            example = "Seven Food", required = true)
     @Size(min = 3, max = 255)
     private String name;
 
-    @Schema(description = "Description of the Product.",
-            example = "Vicente", required = true)
+    @Schema(description = "Cnpj of the Restaurant.",
+            example = "11.469.762/0001-58", required = true)
     @Size(min = 0, max = 255)
+    @CNPJ(message = "CNPJ inválido")
     private String cnpj;
 
 }

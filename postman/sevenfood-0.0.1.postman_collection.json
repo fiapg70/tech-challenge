@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c8f9939e-536e-4f7e-a33e-f67ad0800b92",
-		"name": "sevenfood",
+		"name": "sevenfood-0.0.1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -155,7 +155,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Product 2 00000\",\n    \"description\": \"Product 2 0000\",\n    \"price\": 9.9,\n    \"pic\": \"dsas\",\n    \"productCategory\": {\n        \"id\": 1,\n        \"name\": \"Frutos\"\n    }\n}",
+							"raw": "{\n    \"name\": \"Product 3\",\n    \"description\": \"Product 3\",\n    \"price\": 9.9,\n    \"pic\": \"dsas\",\n    \"productCategory\": {\n        \"id\": 1,\n        \"name\": \"Bebida\"\n    },\n    \"restaurant\": {\n        \"id\": 1,\n        \"name\": \"Seven Food\",\n        \"cnpj\": \"02.365.347/0001-63\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,7 +285,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Product 4\",\n    \"cnpj\": \"23423423423\"\n}",
+							"raw": "{\n    \"name\": \"Seven Food\",\n    \"cnpj\": \"02.365.347/0001-63\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -416,7 +416,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Product 4\",\n    \"cpf\": \"23423423423\"\n}",
+							"raw": "{\n    \"name\": \"Ana Furtado Correia\",\n    \"cpf\": \"183.417.520-85\",\n    \"restaurant\": {\n        \"id\": 1,\n        \"name\": \"Seven Food\", \n        \"cnpj\": \"02.365.347/0001-63\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -547,7 +547,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Product 4\",\n    \"cpf\": \"23423423423\"\n}",
+							"raw": "{\n    \"code\": \"10b232e4-e1c6-4ad4-beff-649606737b56\",\n    \"client\": {\n        \"id\": 1,\n        \"name\": \"Ana Furtado Correia\",\n        \"cpf\": \"183.417.520-85\",\n        \"restaurant\": {\n            \"id\": 1,\n            \"name\": \"Seven Food\",\n            \"cnpj\": \"02.365.347/0001-63\"\n        }\n    },\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"Product 3\",\n            \"description\": \"Product 3\",\n            \"price\": 9.90,\n            \"pic\": \"dsas\",\n            \"productCategory\": {\n                \"id\": 1,\n                \"name\": \"Bebida\"\n            },\n            \"restaurant\": {\n                \"id\": 1,\n                \"name\": \"Seven Food\",\n                \"cnpj\": \"02.365.347/0001-63\"\n            }\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"

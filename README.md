@@ -53,9 +53,16 @@ Certifique-se de ter o seguinte configurado em seu sistema:
 
 * Java 17
 * Spring boot 3
+*  Flyway
 * Intellij
-* PostGres (PGAdmin)
+* PostGres 12 (PGAdmin)
 * Docker && Docker Compose
+* Nginx como reverse proxy
+* Swagger (OpenAPI)
+* Junit 5
+* Mockito
+* Maven
+
 
 ### 🛠️ Passos de Instalação
 
@@ -65,9 +72,18 @@ Certifique-se de ter o seguinte configurado em seu sistema:
 
 ### Docker Compose
 
-Utilize o comando `docker compose up` para "construir" (*build*) e subir o servidor local, expondo a porta 3000 em `localhost`. Além do container da `api` também subirá o serviço `db` com o banco de dados de desenvolvimento.
+Utilize o comando `docker compose up -d` para "construir" (*build*) e subir o servidor local, expondo a porta 3000 em `localhost`. Além do container da `api` também subirá o serviço `db` com o banco de dados de desenvolvimento.
 
 **IMPORTANTE:** Esta API está programada para ser acessada a partir de `http://localhost:9991/api` e o banco de dados utiliza a porta `5432`. Certifique-se de que não existam outros recursos ocupando as portas `5432` / `16543` e `9991` antes de subir o projeto.
+
+Para derrubar o serviço, execute o comando `docker compose down`.
+
+
+### Docker compose para produção
+
+No docer compose da raiz do proejeto temos um docker compose para produção, ele sobe o banco de dados, a api e o nginx como reverse proxy.
+
+isso é feito com o comando: `docker compose up -d` com isso terei a api rodando na porta 80 e o banco de dados na porta 5432.
 
 Para derrubar o serviço, execute o comando `docker compose down`.
 
@@ -89,6 +105,12 @@ DATABASE_USERNAME=postgres
    ```sh
    docker-compose up -d
 
+### Rodando a aplicação sem IDE com o Docker Hub.
+
+1. O containar da API está hospedado no docker hub, com a seguinte URL (https://hub.docker.com/r/rogeriofontes/sevenfood-api). Para baixar a imagem e rodar o container, execute o seguinte comando:
+   ```sh
+   docker pull rogeriofontes/sevenfood-api:1.0.0
+   
 ### Endpoints
 
 Esta API fornece documentação no padrão OpenAPI.
@@ -109,3 +131,8 @@ Definição dos fluxos:
 
 - Preparação e entrega do pedido
   ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.png)
+
+
+### Desenvilmento dos códigos em ingles
+
+O uso do inglës é para facilitar a leitura e entendimento do código, pois é uma linguagem universal de escrita de cõdigo-fonte. 

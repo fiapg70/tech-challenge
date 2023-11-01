@@ -37,7 +37,7 @@ spring:
     pathmatch:
       matching-strategy: "path-pattern-parser"
   flyway:
-    locations: classpath:db/migration, classpath:db/callback
+    locations: classpath:db/migration #, classpath:db/callback
 
 application:
   security:

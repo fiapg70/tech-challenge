@@ -6,7 +6,7 @@ services:
     image: nginx:1.13
     restart: always
     ports:
-      - "80:80"
+      - "81:80"
       - "443:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
@@ -16,7 +16,7 @@ services:
       - postgres-network
   app:
     container_name: sevenfood-api
-    image: psi/sevenfood-api:1.0.0
+    image: rogeriofontes/sevenfood-api:1.0.0
     build: ./
     restart: always
     ports:

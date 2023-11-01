@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "tb_client")
@@ -39,9 +40,10 @@ public class ClientEntity extends AuditDomain {
 
     @Schema(description = "cnpj of the Product.",
             example = "V$", required = true)
-    @NotNull(message = "o campo \"cnpj\" é obrigario")
+    @NotNull(message = "o campo \"cpf\" é obrigario")
     @Size(min = 3, max = 255)
     @Column(name = "cpf", length = 255)
+    @CPF(message = "CPF inválido")
     private String cpf;
 
     @Schema(description = "Resident of the User.",

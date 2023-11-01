@@ -48,7 +48,6 @@ public class ClientResources {
             @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-
     public ResponseEntity<ClientResponse> save(@Valid @RequestBody ClientRequest request) {
         try {
             log.info("Chegada" + request);

@@ -29,26 +29,13 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Local ENV",
-                        url = "http://localhost:8080"
+                        url = "http://localhost:9991/api"
                 ),
                 @Server(
                         description = "PROD ENV",
-                        url = "https://reaproveitemais.com.br/api"
-                )
-        },
-        security = {
-                @SecurityRequirement(
-                        name = "bearerAuth"
+                        url = "https://sevenfood.com.br/api"
                 )
         }
-)
-@SecurityScheme(
-        name = "bearerAuth",
-        description = "JWT auth description",
-        scheme = "bearer",
-        type = SecuritySchemeType.HTTP,
-        bearerFormat = "JWT",
-        in = SecuritySchemeIn.HEADER
 )
 public class OpenApiConfig {
 }

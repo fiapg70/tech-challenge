@@ -1,7 +1,5 @@
 package br.com.postech.sevenfood.application.api.dto.response;
 
-import br.com.postech.sevenfood.core.domain.ProductCategory;
-import br.com.postech.sevenfood.core.domain.Restaurant;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -9,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -42,8 +39,8 @@ public class ProductResponse implements Serializable {
             example = "V$", required = true)
     private String pic;
 
-    private ProductCategory productCategory;
+    private ProductCategoryResponse productCategory;
 
-    private Restaurant restaurant;
+    private RestaurantResponse restaurant;
 
 }

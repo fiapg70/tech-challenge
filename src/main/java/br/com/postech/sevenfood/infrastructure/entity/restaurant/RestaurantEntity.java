@@ -38,7 +38,7 @@ public class RestaurantEntity extends AuditDomain {
 
     @Schema(description = "cnpj of the Product.",
             example = "V$", required = true)
-    @NotNull(message = "o campo \"cnpj\" é obrigario")
+    @NotNull(message = "o campo \"cnpj\" é obrigatorio")
     @Size(min = 3, max = 255)
     @Column(name = "cnpj", length = 255)
     @CNPJ(message = "CNPJ inválido")

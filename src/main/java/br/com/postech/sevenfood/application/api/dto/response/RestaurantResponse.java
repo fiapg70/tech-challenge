@@ -1,6 +1,5 @@
 package br.com.postech.sevenfood.application.api.dto.response;
 
-import br.com.postech.sevenfood.application.api.dto.request.RestaurantRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -8,9 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Builder

@@ -1,7 +1,5 @@
 package br.com.postech.sevenfood.application.api.dto.response;
 
-import br.com.postech.sevenfood.core.domain.Product;
-import br.com.postech.sevenfood.infrastructure.entity.client.ClientEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -9,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -32,7 +29,7 @@ public class OrderResponse implements Serializable {
     @Schema(description = "Description of the Product.",
             example = "Vicente", required = true)
     @Size(min = 0, max = 255)
-    private List<Product> products;
+    private List<ProductResponse> products;
 
-    private ClientEntity client;
+    private ClientResponse client;
 }

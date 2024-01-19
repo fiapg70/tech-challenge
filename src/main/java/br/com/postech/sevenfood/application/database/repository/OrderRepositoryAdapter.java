@@ -57,7 +57,7 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
         if (resultById.isPresent()) {
 
             OrderEntity orderToChange = resultById.get();
-            orderToChange.update(id, order);
+            orderToChange.update(id, orderMapper.fromModelTpEntity(order));
 
             return orderMapper.fromEntityToModel(orderRepository.save(orderToChange));
         }

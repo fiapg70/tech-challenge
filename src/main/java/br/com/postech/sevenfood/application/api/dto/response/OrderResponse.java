@@ -17,6 +17,8 @@ import java.util.List;
 @Tag(name = "Product object")
 public class OrderResponse implements Serializable {
 
+    private ClientResponse client;
+
     @Schema(description = "Unique identifier of the Driver.",
             example = "1", required = true)
     private Long id;
@@ -31,5 +33,5 @@ public class OrderResponse implements Serializable {
     @Size(min = 0, max = 255)
     private List<ProductResponse> products;
 
-    private ClientResponse client;
+
 }

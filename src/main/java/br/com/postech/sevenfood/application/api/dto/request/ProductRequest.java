@@ -17,6 +17,10 @@ import java.math.BigDecimal;
 @Tag(name = "Product object")
 public class ProductRequest implements Serializable {
 
+    @Schema(description = "Unique identifier of the Driver.",
+            example = "1", required = true)
+    private Long id;
+
     @Schema(description = "Name of the Product.",
             example = "Coca-cola", required = true)
     @Size(min = 3, max = 255)

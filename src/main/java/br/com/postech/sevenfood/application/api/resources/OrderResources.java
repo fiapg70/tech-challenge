@@ -21,7 +21,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +49,6 @@ public class OrderResources {
     @ResponseStatus(HttpStatus.CREATED)
 
     public ResponseEntity<OrderResponse> save(@Valid @RequestBody OrderRequest request) {
-        try {
             log.info("Chegada" + request);
             Order order = orderApiMapper.fromRquest(request);
             Order saved = createOrderPort.save(order);
@@ -62,10 +60,6 @@ public class OrderResources {
             URI location = RestUtils.getUri(orderResponse.getId());
 
             return ResponseEntity.created(location).body(orderResponse);
-        } catch (Exception ex) {
-            log.info("Erro: " + ex.getMessage());
-        }
-        return null;
     }
 
     @Operation(summary = "Update a Order by Id", tags = {"orders", "put"})

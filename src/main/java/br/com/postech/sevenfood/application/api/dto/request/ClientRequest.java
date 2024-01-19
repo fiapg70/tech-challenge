@@ -17,6 +17,11 @@ import java.io.Serializable;
 @Tag(name = "Client object")
 public class ClientRequest implements Serializable {
 
+
+    @Schema(description = "Unique identifier of the Driver.",
+            example = "1", required = true)
+    private Long id;
+
     @Schema(description = "Name of the Client.",
             example = "Luara Balestero da Mata", required = true)
     @Size(min = 3, max = 255)

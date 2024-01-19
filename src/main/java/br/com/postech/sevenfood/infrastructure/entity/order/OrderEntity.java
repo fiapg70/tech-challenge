@@ -48,8 +48,8 @@ public class OrderEntity extends AuditDomain {
     @Schema(description = "Client of the User.",
             example = "1", required = true, ref = "User")
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "client_id", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ClientEntity client;
 
@@ -60,7 +60,7 @@ public class OrderEntity extends AuditDomain {
     )
     private List<ProductEntity> products;
 
-    public void update(Long id, Order order) {
+    public void update(Long id, OrderEntity order) {
         this.id = id;
         this.code = order.getCode();
         this.client = order.getClient();

@@ -20,7 +20,7 @@ public class Order implements Serializable {
     private Long id;
     private String code;
     private List<Product> products;
-    private ClientEntity client;
+    private Client client;
     private StatusEnum statusEnum;
     private PaymentEnum paymentEnum;
 

@@ -1,8 +1,7 @@
 package br.com.postech.sevenfood.core.domain;
 
 import br.com.postech.sevenfood.core.utils.PaymentEnum;
-import br.com.postech.sevenfood.core.utils.StatusEnum;
-import br.com.postech.sevenfood.infrastructure.entity.client.ClientEntity;
+import br.com.postech.sevenfood.core.utils.StatusPedidoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +20,7 @@ public class Order implements Serializable {
     private String code;
     private List<Product> products;
     private Client client;
-    private StatusEnum statusEnum;
+    private StatusPedidoEnum statusPedidoEnum;
     private PaymentEnum paymentEnum;
 
     public void update(Long id, Order order) {
@@ -30,6 +29,6 @@ public class Order implements Serializable {
         this.products = order.getProducts();
         this.client = order.getClient();
         this.products = order.getProducts();
-        this.statusEnum = order.getStatusEnum();
+        this.statusPedidoEnum = order.getStatusPedidoEnum();
     }
 }

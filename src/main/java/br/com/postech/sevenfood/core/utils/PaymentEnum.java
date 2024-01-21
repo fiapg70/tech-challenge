@@ -3,7 +3,7 @@ package br.com.postech.sevenfood.core.utils;
 public enum PaymentEnum {
     EM_PROCESSAMENTO(1L, "Em Processamento"),
     APROVADO(2L, "Aprovado"),
-    REJEITADO(3L, "Enviado");
+    RECUSADO(3L, "Recusado");
 
 
     private final Long cod;

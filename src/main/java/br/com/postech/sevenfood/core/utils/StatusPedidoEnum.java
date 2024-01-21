@@ -2,9 +2,12 @@ package br.com.postech.sevenfood.core.utils;
 
 public enum StatusPedidoEnum {
 
+    EM_PROCESSAMENTO("Em Processamento", 0L),
     RECEBIDO("Recebido", 1L),
     EM_PREPARACAO("Em Preparacao", 2L),
-    PRONTO("Pronto", 3L);
+    PRONTO("Pronto", 3L),
+
+    FINALIZADO("Finalizado", 4L);
 
     private final String status;
     private final Long cod;

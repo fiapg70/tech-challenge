@@ -71,6 +71,10 @@ INSERT INTO public.tb_order_product(
 	order_id, product_id)
 	VALUES (2, 5), (2, 3);
 
+INSERT INTO public.tb_order_product(
+	order_id, product_id)
+	VALUES (3, 1), (2, 3);
+
 INSERT INTO public.tb_payment(
 	id, client_id, order_id, status)
 	VALUES (1, 2, 2, 2);

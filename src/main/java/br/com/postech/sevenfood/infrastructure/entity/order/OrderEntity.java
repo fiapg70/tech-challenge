@@ -75,6 +75,7 @@ public class OrderEntity {
         this.id = id;
         this.code = order.getCode();
         this.client = order.getClient();
+        this.statusPedidoEnum = order.getStatusPedidoEnum();
         //this.products = order.getProducts();
     }
 }

@@ -1,5 +1,6 @@
 package br.com.postech.sevenfood.application.api.dto.request;
 
+import br.com.postech.sevenfood.core.utils.StatusPedidoEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -30,4 +31,7 @@ public class OrderRequest implements Serializable {
     @Schema(description = "Client of the Product.",
             example = "Luara Balestero da Mata", required = true, ref = "Client")
     private ClientRequest client;
+
+    private StatusPedidoEnum statusPedidoEnum;
+
 }

@@ -8,7 +8,7 @@ metadata:
     app: postgresdb
 data:
   # User DB
-  POSTGRES_DB: postgres
+  POSTGRES_DB: sevenfood
   # Db user
   POSTGRES_USER: admin
   # Db password

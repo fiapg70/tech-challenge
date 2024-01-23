@@ -8,10 +8,13 @@ metadata:
     app: postgresdb
 spec:
   # Choose how to expose your service
-  type: NodePort
+  #type: NodePort
+  type: ClusterIP
   ports:
-    # The port number to expose the service
     - port: 5432
+    # The port number to expose the service
+    #- port: 5432
+    #  nodePort: 32432
   # Pod to route service traffic  
   selector:
     app: postgresdb

@@ -8,7 +8,7 @@ metadata:
     app: sevenfood-api
 data:
   # User DB
-  DATABASE_URL: jdbc:postgresql:localhost:5432/sevenfood
+  DATABASE_URL: jdbc:postgresql://postgresdb:5432/sevenfood
   # Db user
   DATABASE_USERNAME: admin
   # Db password

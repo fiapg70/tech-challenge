@@ -5,6 +5,9 @@ kind: Deployment
 metadata:
   # The name of the Deployment
   name: postgresdb
+  labels:
+    app: postgresdb
+    tier: database
 spec:
   # Replicas for this Deployment
   replicas: 1
@@ -17,6 +20,7 @@ spec:
       labels:
         # The label the pods created from the pod template should have
         app: postgresdb
+        tier: database
     spec:
       containers:
         # The container name to execute pods

@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: sevenfood-api-svc
 spec:
-  # type: NodePort
-  type: LoadBalancer
+  type: NodePort
   ports:
-    - port: 80
-      #targetPort: 9991
-      nodePort: 30081
+      - protocol: "TCP"
+        port: 9991
+        targetPort: 9991
+        nodePort: 30091
   selector:
     app: sevenfood-api

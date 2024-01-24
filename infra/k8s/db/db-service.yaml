@@ -6,15 +6,12 @@ metadata:
   name: postgresdb
   labels:
     app: postgresdb
+    tier: database
 spec:
   # Choose how to expose your service
   #type: NodePort
-  type: ClusterIP
   ports:
     - port: 5432
-    # The port number to expose the service
-    #- port: 5432
-    #  nodePort: 32432
-  # Pod to route service traffic  
   selector:
     app: postgresdb
+    tier: database

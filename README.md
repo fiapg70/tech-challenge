@@ -166,3 +166,5 @@ Definição dos fluxos:
 ### Desenvilmento dos códigos em inglës
 
 O uso do inglês é para facilitar a leitura e entendimento do código, pois é uma linguagem universal de escrita de cõdigo-fonte. 
+
+

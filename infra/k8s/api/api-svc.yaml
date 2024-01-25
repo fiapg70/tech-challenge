@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: sevenfood-api-svc
 spec:
-  type: NodePort
+  #type: NodePort
+  type: LoadBalancer
   ports:
       - protocol: "TCP"
         port: 9991

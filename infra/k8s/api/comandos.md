@@ -38,5 +38,5 @@ kubectl get nodes -o wide
 
 #### Rodar o serviço
 Para rodar a IP tem que pegar o internal ip ou o ip externo e somar com a url do swagger ou do actuactor
-http://192.168.59.100:30091/api/swagger-ui/index.html
-http://192.168.59.100:30091/actuactor/health
+- http://192.168.59.100:30091/api/swagger-ui/index.html
+- http://192.168.59.100:30091/actuactor/health

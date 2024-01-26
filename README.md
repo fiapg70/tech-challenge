@@ -62,7 +62,7 @@ Certifique-se de ter o seguinte configurado em seu sistema:
 * Junit 5
 * Mockito
 * Maven
-* Kubernetes
+* Kubernetes (EKS)
 
 ### 🛠️ Passos de Instalação
 

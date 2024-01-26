@@ -146,6 +146,8 @@ Comando para subir o banco como serviço no Kubernetes:
 
 ---
 
+#### Videos
+
 Infra Rodando no Minikube:
 [Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/minikube.md)
 

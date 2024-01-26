@@ -118,7 +118,6 @@ DATABASE_USERNAME=postgres
     -e DATABASE_USERNAME=postgres \
     -t rogeriofontes/sevenfood-api:1.0.0
    
-### Rodando o banco de dados postgres no kubernetes Local.
 ## Infraestrutura baseada no Kubernetes:
 - Desenho de arquitetura utilizando Kubernetes com Minikube e EKS:
   ![diagrama do fluxo de pedido e pagamento](docs/k8s-fiap.png)

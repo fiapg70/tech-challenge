@@ -144,12 +144,17 @@ Comando para subir o banco como serviço no Kubernetes:
 Comando para subir o banco como serviço no Kubernetes:
 [Infra-API](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/api/comandos.md)
 
-[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/minikube.md)
+---
 
-## Na Infra também foi colocada no EKS:
+Infra Rodando no Minikube:
+[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/minikube.md)
 
 Video no Minibuke:
 [Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/eks.md)
+
+## Na Infra também foi colocada no EKS:
+
+
 
 Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso foi feito uma infra em terraform para criar esse cluster:
 

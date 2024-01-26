@@ -142,24 +142,24 @@ No arquivo de configuração api-deployment.yaml, foi defino os pods onde está 
 No arquivo de configuração api-svc.yaml, foi utilizado para exposição do api na porta 9991. No minikube, foi isado como tipo NodePort e no EKS foi usado tipo LoadBalancer;
 
 Comando para subir o banco como serviço no Kubernetes:
-[Infra-API](infra/k8s/api/comandos.md)
+[Infra-API](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/api/comandos.md)
 
-@include[Minikube](infra/videos/minikube.md)
+[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/minikube.md)
 
 # Na Infra também foi colocada no EKS:
 
 Video no Minibuke:
-@include[Minikube](infra/videos/eks.md)
+[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/eks.md)
 
 Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso foi feito uma infra em terraform para criar esse cluster:
 
-@include[Infra Terraform](infra/create-cluster-eks/comandos.md)
+[Infra Terraform](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/create-cluster-eks/comandos.md)
 
 # Kubernetes Dashboard
 
 e para melhorar a visualização foi criado o dashboard kubernetes.
 
-@include[Kubernetes - Dashboard](infra/dashboard/comandos.md)
+[Kubernetes - Dashboard](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/dashboard/comandos.md)
 
 ### Endpoints
 

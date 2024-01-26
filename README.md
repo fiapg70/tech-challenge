@@ -119,28 +119,49 @@ DATABASE_USERNAME=postgres
     -t rogeriofontes/sevenfood-api:1.0.0
    
 ### Rodando o banco de dados postgres no kubernetes Local.
-#Iniciar o minikube no Linux:
+## Infraestrutura baseada no Kubernetes:
+- Desenho de arquitetura utilizando Kubernetes com Minikube e EKS:
+  ![diagrama do fluxo de pedido e pagamento](docs/k8s-fiap.png)
 
-$ minikube start --vm-driver=virtualbox
+# Na infra estrutra do Kubernetes (K8S) foram criada duas estruturas, primeira estrutura de um banco de dados PostgreSQL e outra para subir a API em Spring boot que conecta nesse banco através da infra do K8S.
 
-$ kubectl apply -f db-persistent-volume.yaml
-$ kubectl apply -f db-volume-claim.yaml
-$ kubectl apply -f db-configmap.yaml
-$ kubectl apply -f db-deployment.yaml
-$ kubectl apply -f db-service.yaml
+# Na Infra do PostGres temos as seguintes configurações:
 
-$ kubectl get all
+No arquivo de configuração db-persistent-volume.yaml e no arquito de configuação db-volume-claim.yaml foram usados para definir um storage de 8Gb para o banco).
+No arquivo de configuração db-configmap.yaml, foi condigurados as variaves de ambiente com dados para serem usados pela imagem do banco de dados.
+No arquivo de configuração db-deployment.yaml, foi defino os pods onde está o configmap, e a descrição das esturura de replicas e estrutura para execução do trabalho.
+No arquivo de configuração db-service.yaml, foi utilizado para exposição do banco na porta 5432.
 
-$ minikube dashboard
+Comando para subir o banco como serviço no Kubernetes:
+[Infra-DB](infra/db/comandos.md)
 
-$ kubectl exec -it postgresdb-7b475497d6-jd5lj -- psql -h localhost -U admin --password -p 5432 sevenfood
+# Na Infra da API (Spring boot) temos as seguintes configurações:
 
-# Para excluir o Cluster
-$ kubectl delete -f db-service.yaml
-$ kubectl delete -f db-deployment.yaml
-$ kubectl delete -f db-configmap.yaml
-$ kubectl delete -f db-volume-claim.yaml
-$ kubectl delete -f db-persistent-volume.yaml
+No arquivo de configuração api-configmap.yaml, foi configurados as variáves de ambientes, com dados para serem usados pela API para acessar o serviço do banco de dados.
+No arquivo de configuração api-deployment.yaml, foi defino os pods onde está o configmap, e a descrição das esturura de replicas e estrutura para execução do trabalho da API do spring boot.
+No arquivo de configuração api-svc.yaml, foi utilizado para exposição do api na porta 9991. No minikube, foi isado como tipo NodePort e no EKS foi usado tipo LoadBalancer;
+
+Comando para subir o banco como serviço no Kubernetes:
+[Infra-API](infra/api/comandos.md)
+
+Video no Minibuke:
+[Minikube](infra/videos/minikube.md)
+
+# Na Infra também foi colocada no EKS:
+
+Video no Minibuke:
+[Minikube](infra/videos/eks.md)
+
+Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso foi feito uma infra em terraform para criar esse cluster:
+
+[Infra Terraform](infra/create-cluster-eks/comandos.md)
+
+# Kubernetes Dashboard
+
+e para melhorar a visualização foi criado o dashboard kubernetes.
+
+[Kubernetes - Dashboard](infra/dashboard/comandos.md)
+
 ### Endpoints
 
 Esta API fornece documentação no padrão OpenAPI.

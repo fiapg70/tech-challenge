@@ -133,7 +133,7 @@ No arquivo de configuração db-deployment.yaml, foi defino os pods onde está o
 No arquivo de configuração db-service.yaml, foi utilizado para exposição do banco na porta 5432.
 
 Comando para subir o banco como serviço no Kubernetes:
-[Infra-DB](infra/db/comandos.md)
+@@include[Infra-DB](infra/db/comandos.md)
 
 # Na Infra da API (Spring boot) temos as seguintes configurações:
 
@@ -142,25 +142,25 @@ No arquivo de configuração api-deployment.yaml, foi defino os pods onde está 
 No arquivo de configuração api-svc.yaml, foi utilizado para exposição do api na porta 9991. No minikube, foi isado como tipo NodePort e no EKS foi usado tipo LoadBalancer;
 
 Comando para subir o banco como serviço no Kubernetes:
-[Infra-API](infra/api/comandos.md)
+@@include[Infra-API](infra/api/comandos.md)
+[.md](includes/my-file.md)
 
-Video no Minibuke:
-[Minikube](infra/videos/minikube.md)
+@@include[Minikube](infra/videos/minikube.md)
 
 # Na Infra também foi colocada no EKS:
 
 Video no Minibuke:
-[Minikube](infra/videos/eks.md)
+@@include[Minikube](infra/videos/eks.md)
 
 Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso foi feito uma infra em terraform para criar esse cluster:
 
-[Infra Terraform](infra/create-cluster-eks/comandos.md)
+@@include[Infra Terraform](infra/create-cluster-eks/comandos.md)
 
 # Kubernetes Dashboard
 
 e para melhorar a visualização foi criado o dashboard kubernetes.
 
-[Kubernetes - Dashboard](infra/dashboard/comandos.md)
+@@include[Kubernetes - Dashboard](infra/dashboard/comandos.md)
 
 ### Endpoints
 

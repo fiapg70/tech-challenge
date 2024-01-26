@@ -133,7 +133,7 @@ No arquivo de configuração db-deployment.yaml, foi defino os pods onde está o
 No arquivo de configuração db-service.yaml, foi utilizado para exposição do banco na porta 5432.
 
 Comando para subir o banco como serviço no Kubernetes:
-@include[Infra-DB](infra/db/comandos.md)
+[Infra-DB](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/db/comandos.md)
 
 # Na Infra da API (Spring boot) temos as seguintes configurações:
 
@@ -142,7 +142,7 @@ No arquivo de configuração api-deployment.yaml, foi defino os pods onde está 
 No arquivo de configuração api-svc.yaml, foi utilizado para exposição do api na porta 9991. No minikube, foi isado como tipo NodePort e no EKS foi usado tipo LoadBalancer;
 
 Comando para subir o banco como serviço no Kubernetes:
-@include[Infra-API](infra/api/comandos.md)
+[Infra-API](infra/k8s/api/comandos.md)
 
 @include[Minikube](infra/videos/minikube.md)
 

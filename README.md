@@ -125,7 +125,7 @@ DATABASE_USERNAME=postgres
 
 ### Na infra estrutra do Kubernetes (K8S) foram criada duas estruturas, primeira estrutura de um banco de dados PostgreSQL e outra para subir a API em Spring boot que conecta nesse banco através da infra do K8S.
 
-## Na Infra do PostgreSQL temos as seguintes configurações:
+#### Na Infra do PostgreSQL temos as seguintes configurações:
 
 - No arquivo de configuração db-persistent-volume.yaml e no arquito de configuação db-volume-claim.yaml foram usados para definir um storage de 8Gb para o banco).
 - No arquivo de configuração db-configmap.yaml, foi condigurados as variaves de ambiente com dados para serem usados pela imagem do banco de dados.
@@ -135,7 +135,7 @@ DATABASE_USERNAME=postgres
 Comando para subir o banco como serviço no Kubernetes:
 [Infra-DB](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/db/comandos.md)
 
-## Na Infra da API (Spring boot) temos as seguintes configurações:
+#### Na Infra da API (Spring boot) temos as seguintes configurações:
 
 - No arquivo de configuração api-configmap.yaml, foi configurados as variáves de ambientes, com dados para serem usados pela API para acessar o serviço do banco de dados.
 - No arquivo de configuração api-deployment.yaml, foi defino os pods onde está o configmap, e a descrição das esturura de replicas e estrutura para execução do trabalho da API do spring boot.
@@ -152,7 +152,7 @@ Infra Rodando no Minikube:
 Video no Minibuke:
 [Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/eks.md)
 
-## Na Infra também foi colocada no EKS:
+#### Na Infra também foi colocada no EKS:
 
 
 
@@ -160,7 +160,7 @@ Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso fo
 
 [Infra Terraform](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/create-cluster-eks/comandos.md)
 
-## Kubernetes Dashboard
+#### Kubernetes Dashboard
 
 e para melhorar a visualização foi criado o dashboard kubernetes.
 

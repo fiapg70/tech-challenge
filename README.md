@@ -188,6 +188,21 @@ Definição dos fluxos:
 - Preparação e entrega do pedido
   ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.png)
 
+## Para efetuar o checkout do seu pedido, siga os passos abaixo:
+1. **Consulte os Produtos Disponíveis:**
+   Chame a rota `http://localhost:9990/api/v1/products` para obter a lista de produtos disponíveis para seleção do seu pedido.
+
+2. **Selecione seu Lanche:**
+   Escolha o seu lanche chamando a rota `http://localhost:9990/api/v1/orders`. Insira as informações necessárias no corpo da requisição.
+
+3. **Efetue o Pagamento:**
+   Chame a rota `http://localhost:9990/api/v1/payments` para realizar o pagamento do seu pedido. Utilize o retorno da primeira rota no corpo da requisição de pagamento.
+
+   *Observação:*
+   Existe um ambiente de simulação para pagamentos. No momento, apenas o CPF 733.966.987-62 será aprovado; os demais serão recusados. Acesse `http://localhost:9990/api/v1/payments` para mais detalhes.
+
+4. **Consulte o Status do Pedido:**
+   Para acompanhar o status do seu pedido, utilize a rota `http://localhost:9990/api/v1/orders/{id}`, substituindo `{id}` pelo identificador da sua ordem. Isso permitirá que você obtenha informações atualizadas sobre o andamento do seu pedido.
 
 ### Desenvilmento dos códigos em inglës
 

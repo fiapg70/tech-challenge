@@ -1,5 +1,5 @@
 server:
-  port: 9991
+  port: 9990
   servlet:
     context-path: /api
   error:
@@ -37,6 +37,7 @@ spring:
     pathmatch:
       matching-strategy: "path-pattern-parser"
   flyway:
+    baselineOnMigrate: true
     locations: classpath:db/migration, classpath:db/callback
 
 application:

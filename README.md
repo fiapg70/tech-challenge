@@ -145,14 +145,13 @@ Comando para subir o banco como serviço no Kubernetes:
 
 ---
 
-#### Videos
+#### Videos de configuração da API com K8S
 
-Infra Rodando no Minikube:
-[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/minikube.md)
+##### K8S
+https://youtu.be/-j2bhXt6c0I -Video1 
+https://youtu.be/veQ6jQu7Xp8 -Video2
 
-Video no Minibuke:
-[Minikube](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/videos/eks.md)
-
+Obs: não conseguimos criar o video de conexão do Dashboard no EKS, por isso não fizemos o último video.
 #### Na Infra também foi colocada no EKS:
 
 

@@ -82,3 +82,10 @@ INSERT INTO public.tb_payment(
 INSERT INTO public.tb_payment(
 	id, client_id, order_id, status)
 	VALUES (2, 2, 3, 3);
+
+SELECT setval('public.tb_client_id_seq', (SELECT MAX(id) FROM public.tb_client), true);
+SELECT setval('public.tb_order_id_seq', (SELECT MAX(id) FROM public.tb_order), true);
+SELECT setval('public.tb_payment_id_seq', (SELECT MAX(id) FROM public.tb_payment), true);
+SELECT setval('public.tb_product_category_id_seq', (SELECT MAX(id) FROM public.tb_product_category), true);
+SELECT setval('public.tb_product_id_seq', (SELECT MAX(id) FROM public.tb_product), true);
+SELECT setval('public.tb_restaurant_id_seq', (SELECT MAX(id) FROM public.tb_restaurant), true);

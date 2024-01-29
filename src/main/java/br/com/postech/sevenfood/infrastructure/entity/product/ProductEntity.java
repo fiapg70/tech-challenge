@@ -59,7 +59,7 @@ public class ProductEntity extends AuditDomain {
     @Schema(description = "Restaurant of the User.",
             example = "1", required = true, ref = "User")
     @NotNull
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_category_id", unique = true)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private ProductCategoryEntity productCategory;

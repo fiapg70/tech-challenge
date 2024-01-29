@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sevenfood-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sevenfood-api
+  template:
+    metadata:
+      labels:
+        app: sevenfood-api
+    spec:
+      containers:
+        - name: sevenfood-api-container
+          image: rogeriofontes/sevenfood-api:1.0.2
+          ports:
+            - containerPort: 9991
+          envFrom:
+            # Load the environment variables/PostgresSQL credentials
+            - configMapRef:
+                # This should be the ConfigMap name created ealier
+                name: api-secret-credentials
+        

@@ -6,6 +6,7 @@ import br.com.postech.sevenfood.application.api.mappper.OrderApiMapper;
 import br.com.postech.sevenfood.commons.util.RestUtils;
 import br.com.postech.sevenfood.core.domain.Order;
 import br.com.postech.sevenfood.core.ports.in.order.*;
+import br.com.postech.sevenfood.core.utils.StatusPedidoEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,8 +22,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,7 +52,6 @@ public class OrderResources {
     @ResponseStatus(HttpStatus.CREATED)
 
     public ResponseEntity<OrderResponse> save(@Valid @RequestBody OrderRequest request) {
-        try {
             log.info("Chegada" + request);
             Order order = orderApiMapper.fromRquest(request);
             Order saved = createOrderPort.save(order);
@@ -62,10 +63,6 @@ public class OrderResources {
             URI location = RestUtils.getUri(orderResponse.getId());
 
             return ResponseEntity.created(location).body(orderResponse);
-        } catch (Exception ex) {
-            log.info("Erro: " + ex.getMessage());
-        }
-        return null;
     }
 
     @Operation(summary = "Update a Order by Id", tags = {"orders", "put"})
@@ -99,6 +96,13 @@ public class OrderResources {
     public ResponseEntity<List<OrderResponse>> findAll() {
         List<Order> orderList = findOrdersPort.findAll();
         List<OrderResponse> orderResponse = orderApiMapper.map(orderList);
+
+        orderResponse = orderResponse.stream()
+                .filter(o -> ALLOWED_STATUS.contains(o.getStatusPedidoEnum()))
+                .collect(Collectors.toList());
+
+        orderResponse.sort(new OrderResponse());
+
         return orderResponse.isEmpty() ?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(orderResponse);
@@ -155,4 +159,10 @@ public class OrderResources {
         }).collect(Collectors.joining());
         return result;
     }
+
+    private static final List<StatusPedidoEnum> ALLOWED_STATUS = Arrays.asList(
+            StatusPedidoEnum.PRONTO,
+            StatusPedidoEnum.EM_PREPARACAO,
+            StatusPedidoEnum.RECEBIDO
+    );
 }

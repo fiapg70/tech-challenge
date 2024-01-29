@@ -1,9 +1,11 @@
 package br.com.postech.sevenfood.application.api.resources;
 
 import br.com.postech.sevenfood.application.api.dto.request.OrderRequest;
+import br.com.postech.sevenfood.application.api.dto.response.OrderResponse;
+import br.com.postech.sevenfood.application.api.dto.response.PaymentStatusResponse;
 import br.com.postech.sevenfood.application.api.mappper.OrderApiMapper;
 import br.com.postech.sevenfood.core.domain.Order;
-import br.com.postech.sevenfood.core.ports.in.order.PaymentPort;
+import br.com.postech.sevenfood.core.ports.in.payment.PaymentPort;
 import br.com.postech.sevenfood.core.utils.PaymentEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,5 +58,21 @@ public class PaymentResources {
             log.info("Erro: " + ex.getMessage());
         }
         return null;
+    }
+
+    @Operation(summary = "Pay order", tags = {"payments", "get"})
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(schema = @Schema(implementation = PaymentResources.class), mediaType = "application/json")}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<PaymentStatusResponse> find(@PathVariable("id") Long id) {
+        try {
+            PaymentStatusResponse statusResponse = paymentPort.get(id);
+            return statusResponse == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(paymentPort.get(id));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

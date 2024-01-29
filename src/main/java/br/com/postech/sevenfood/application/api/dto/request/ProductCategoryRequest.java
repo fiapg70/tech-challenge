@@ -18,6 +18,10 @@ import java.math.BigDecimal;
 @Tag(name = "Product Category object")
 public class ProductCategoryRequest implements Serializable {
 
+    @Schema(description = "Unique identifier of the Driver.",
+            example = "1", required = true)
+    private Long id;
+
     @Schema(description = "Name of the Product Category.",
             example = "Bebida", required = true)
     @Size(min = 3, max = 255)

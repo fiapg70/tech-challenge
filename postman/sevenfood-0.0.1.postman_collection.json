@@ -667,6 +667,41 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "http://localhost:9991/api/v1/payments",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"code\": \"10b232e4-e1c6-4ad4-beff-649606737b56\",\n    \"client\": {\n        \"id\": 1,\n        \"name\": \"Ana Furtado Correia\",\n        \"cpf\": \"183.417.520-85\",\n        \"restaurant\": {\n            \"id\": 1,\n            \"name\": \"Seven Food\",\n            \"cnpj\": \"02.365.347/0001-63\"\n        }\n    },\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"Product 3\",\n            \"description\": \"Product 3\",\n            \"price\": 9.90,\n            \"pic\": \"dsas\",\n            \"productCategory\": {\n                \"id\": 1,\n                \"name\": \"Bebida\"\n            },\n            \"restaurant\": {\n                \"id\": 1,\n                \"name\": \"Seven Food\",\n                \"cnpj\": \"02.365.347/0001-63\"\n            }\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9991/api/v1/payments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9991",
+							"path": [
+								"api",
+								"v1",
+								"payments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }

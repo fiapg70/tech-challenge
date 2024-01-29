@@ -1,6 +1,5 @@
 package br.com.postech.sevenfood.application.api.dto.response;
 
-import br.com.postech.sevenfood.application.api.dto.request.RestaurantRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Size;
@@ -9,14 +8,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Tag(name = "Client object")
-public class ClientResponse implements Serializable {
+public class ClientResponse {
 
     @Schema(description = "Unique identifier of the Driver.",
             example = "1", required = true)
@@ -32,6 +29,6 @@ public class ClientResponse implements Serializable {
     @Size(min = 0, max = 255)
     private String cpf;
 
-    private RestaurantRequest restaurant;
+    private RestaurantResponse restaurant;
 
 }

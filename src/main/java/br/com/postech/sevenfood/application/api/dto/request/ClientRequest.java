@@ -8,7 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-
 import java.io.Serializable;
 
 @Data
@@ -17,6 +16,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Tag(name = "Client object")
 public class ClientRequest implements Serializable {
+
+
+    @Schema(description = "Unique identifier of the Driver.",
+            example = "1", required = true)
+    private Long id;
 
     @Schema(description = "Name of the Client.",
             example = "Luara Balestero da Mata", required = true)

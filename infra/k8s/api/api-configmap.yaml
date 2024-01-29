@@ -1,0 +1,15 @@
+apiVersion: v1
+# Kind for kubernets ConfigMap
+kind: ConfigMap
+metadata:
+  # Name your ConfigMap
+  name: api-secret-credentials
+  labels:
+    app: sevenfood-api
+data:
+  # User DB
+  DATABASE_URL: jdbc:postgresql://postgresdb:5432/sevenfood
+  # Db user
+  DATABASE_USERNAME: admin
+  # Db password
+  DATABASE_PASSWORD: admin123

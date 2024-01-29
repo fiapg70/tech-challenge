@@ -18,6 +18,10 @@ import java.io.Serializable;
 @Tag(name = "Restaurant object")
 public class RestaurantRequest implements Serializable {
 
+    @Schema(description = "Unique identifier of the Driver.",
+            example = "1", required = true)
+    private Long id;
+
     @Schema(description = "Name of the Restaurant.",
             example = "Seven Food", required = true)
     @Size(min = 3, max = 255)

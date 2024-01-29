@@ -62,7 +62,7 @@ Certifique-se de ter o seguinte configurado em seu sistema:
 * Junit 5
 * Mockito
 * Maven
-
+* Kubernetes (EKS)
 
 ### 🛠️ Passos de Instalação
 
@@ -118,6 +118,54 @@ DATABASE_USERNAME=postgres
     -e DATABASE_USERNAME=postgres \
     -t rogeriofontes/sevenfood-api:1.0.0
    
+## Infraestrutura baseada no Kubernetes:
+- Desenho de arquitetura utilizando Kubernetes com Minikube e EKS:
+  ![diagrama do fluxo de pedido e pagamento](docs/k8s-fiap.png)
+
+### Na infra estrutra do Kubernetes (K8S) foram criada duas estruturas, primeira estrutura de um banco de dados PostgreSQL e outra para subir a API em Spring boot que conecta nesse banco através da infra do K8S.
+
+#### Na Infra do PostgreSQL temos as seguintes configurações:
+
+- No arquivo de configuração db-persistent-volume.yaml e no arquito de configuação db-volume-claim.yaml foram usados para definir um storage de 8Gb para o banco).
+- No arquivo de configuração db-configmap.yaml, foi condigurados as variaves de ambiente com dados para serem usados pela imagem do banco de dados.
+- No arquivo de configuração db-deployment.yaml, foi defino os pods onde está o configmap, e a descrição das esturura de replicas e estrutura para execução do trabalho.
+- No arquivo de configuração db-service.yaml, foi utilizado para exposição do banco na porta 5432.
+
+Comando para subir o banco como serviço no Kubernetes:
+[Infra-DB](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/db/comandos.md)
+
+#### Na Infra da API (Spring boot) temos as seguintes configurações:
+
+- No arquivo de configuração api-configmap.yaml, foi configurados as variáves de ambientes, com dados para serem usados pela API para acessar o serviço do banco de dados.
+- No arquivo de configuração api-deployment.yaml, foi defino os pods onde está o configmap, e a descrição das esturura de replicas e estrutura para execução do trabalho da API do spring boot.
+- No arquivo de configuração api-svc.yaml, foi utilizado para exposição do api na porta 9991. No minikube, foi isado como tipo NodePort e no EKS foi usado tipo LoadBalancer;
+
+Comando para subir o banco como serviço no Kubernetes:
+[Infra-API](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/api/comandos.md)
+
+---
+
+#### Videos de configuração da API com K8S
+
+##### K8S
+https://youtu.be/-j2bhXt6c0I -Video1 
+https://youtu.be/veQ6jQu7Xp8 -Video2
+
+Obs: não conseguimos criar o video de conexão do Dashboard no EKS, por isso não fizemos o último video.
+#### Na Infra também foi colocada no EKS:
+
+
+
+Para configuração da estrutura de um Cluster foi usado o AWS EKS, para isso foi feito uma infra em terraform para criar esse cluster:
+
+[Infra Terraform](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/create-cluster-eks/comandos.md)
+
+#### Kubernetes Dashboard
+
+e para melhorar a visualização foi criado o dashboard kubernetes.
+
+[Kubernetes - Dashboard](https://github.com/fiapg70/tech-challenge-fase-1/blob/feature/refactoring/infra/k8s/dashboard/comandos.md)
+
 ### Endpoints
 
 Esta API fornece documentação no padrão OpenAPI.
@@ -139,7 +187,24 @@ Definição dos fluxos:
 - Preparação e entrega do pedido
   ![diagrama do fluxo de preparação e entrega](docs/preparo-retirada.png)
 
+## Para efetuar o checkout do seu pedido, siga os passos abaixo:
+1. **Consulte os Produtos Disponíveis:**
+   Chame a rota `http://localhost:9990/api/v1/products` para obter a lista de produtos disponíveis para seleção do seu pedido.
+
+2. **Selecione seu Lanche:**
+   Escolha o seu lanche chamando a rota `http://localhost:9990/api/v1/orders`. Insira as informações necessárias no corpo da requisição.
+
+3. **Efetue o Pagamento:**
+   Chame a rota `http://localhost:9990/api/v1/payments` para realizar o pagamento do seu pedido. Utilize o retorno da primeira rota no corpo da requisição de pagamento.
+
+   *Observação:*
+   Existe um ambiente de simulação para pagamentos. No momento, apenas o CPF 733.966.987-62 será aprovado; os demais serão recusados. Acesse `http://localhost:9990/api/v1/payments` para mais detalhes.
+
+4. **Consulte o Status do Pedido:**
+   Para acompanhar o status do seu pedido, utilize a rota `http://localhost:9990/api/v1/orders/{id}`, substituindo `{id}` pelo identificador da sua ordem. Isso permitirá que você obtenha informações atualizadas sobre o andamento do seu pedido.
 
 ### Desenvilmento dos códigos em inglës
 
 O uso do inglês é para facilitar a leitura e entendimento do código, pois é uma linguagem universal de escrita de cõdigo-fonte. 
+
+

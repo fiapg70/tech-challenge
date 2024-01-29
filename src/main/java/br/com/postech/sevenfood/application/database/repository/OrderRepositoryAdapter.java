@@ -3,6 +3,7 @@ package br.com.postech.sevenfood.application.database.repository;
 import br.com.postech.sevenfood.application.database.mapper.OrderMapper;
 import br.com.postech.sevenfood.core.domain.Order;
 import br.com.postech.sevenfood.core.ports.out.OrderRepositoryPort;
+import br.com.postech.sevenfood.core.utils.StatusPedidoEnum;
 import br.com.postech.sevenfood.infrastructure.entity.order.OrderEntity;
 import br.com.postech.sevenfood.infrastructure.repository.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
 
     @Override
     public Order save(Order order) {
+        order.setStatusPedidoEnum(StatusPedidoEnum.EM_PROCESSAMENTO);
         OrderEntity orderEntity = orderMapper.fromModelTpEntity(order);
         OrderEntity saved = orderRepository.save(orderEntity);
         return orderMapper.fromEntityToModel(saved);
@@ -55,9 +57,8 @@ public class OrderRepositoryAdapter implements OrderRepositoryPort {
     public Order update(Long id, Order order) {
         Optional<OrderEntity> resultById = orderRepository.findById(id);
         if (resultById.isPresent()) {
-
             OrderEntity orderToChange = resultById.get();
-            orderToChange.update(id, order);
+            orderToChange.update(id, orderMapper.fromModelTpEntity(order));
 
             return orderMapper.fromEntityToModel(orderRepository.save(orderToChange));
         }

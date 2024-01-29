@@ -3,6 +3,7 @@ package br.com.postech.sevenfood.core.service;
 import br.com.postech.sevenfood.core.domain.Order;
 import br.com.postech.sevenfood.core.ports.in.order.*;
 import br.com.postech.sevenfood.core.ports.out.OrderRepositoryPort;
+import br.com.postech.sevenfood.core.utils.StatusPedidoEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,9 @@ public class OrderService implements CreateOrderPort, UpdateOrderPort, FindByIdO
 
     @Override
     public Order update(Long id, Order order) {
-        Order resultById = findById(id);
-        if (resultById != null) {
-            resultById.update(id, order);
 
-            return orderRepository.save(resultById);
-        }
+            return orderRepository.update(id, order);
 
-        return null;
     }
 
     @Override

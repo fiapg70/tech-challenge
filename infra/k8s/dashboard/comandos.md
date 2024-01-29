@@ -14,3 +14,7 @@ https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/cre
 kubectl proxy
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/.
 ```
+de modo inseguro
+https://medium.com/@tejaswi.goudru/disable-authentication-https-in-kubernetes-dashboard-2fada478ce91
+
+https://vividcode.io/disable-authentication-and-https-in-kubernetes-dashboard/

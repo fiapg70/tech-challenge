@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: sevenfood-api-container
-          image: rogeriofontes/sevenfood-api:1.0.2
+          image: marrani/sevenfood-api:latest
           ports:
             - containerPort: 9991
           envFrom:

@@ -1,0 +1,60 @@
+name: CI/CD para AWS EKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+          role-duration-seconds: 1200
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.1.0
+
+      - name: Inicializar Terraform
+        run: terraform init
+        working-directory: infra/k8s/create-cluster-eks
+
+      - name: Planificar Configuração Terraform
+        run: terraform plan
+        working-directory: infra/k8s/create-cluster-eks
+
+      - name: Aplicar Configuração Terraform
+        run: terraform apply -auto-approve
+        working-directory: infra/k8s/create-cluster-eks
+
+      - name: construindo imagem e envinado para o Docker Hub
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          docker build -t sua-aplicacao .
+          docker tag sevenfood-api:latest marrani/sevenfood-api:latest
+          echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+          docker push marrani/sevenfood:latest
+
+      - name: Implantação do Banco de Dados no Cluster EKS
+        run: |
+          kubectl apply -f infra/k8s/db
+        working-directory: ${{ github.workspace }}
+
+      - name: Implantação no Cluster EKS
+        run: |
+          kubectl apply -f infra/k8s/api
+        working-directory: ${{ github.workspace }}
+

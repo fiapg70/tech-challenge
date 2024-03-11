@@ -21,6 +21,9 @@ jobs:
           aws-region: us-east-1
           role-duration-seconds: 1200
 
+      - name: Instalar Git
+        run: sudo apt-get update && sudo apt-get install git -y
+
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v1
         with:

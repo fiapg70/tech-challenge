@@ -8,8 +8,8 @@ metadata:
     app: sevenfood-api
 data:
   # User DB
-  DATABASE_URL: jdbc:postgresql://postgresdb:5432/sevenfood
+  DATABASE_URL: jdbc:postgresql://rds-sevenfood.crcs2uugubni.us-east-1.rds.amazonaws.com:5432/sevenfood
   # Db user
-  DATABASE_USERNAME: admin
+  DATABASE_USERNAME: postgres
   # Db password
-  DATABASE_PASSWORD: admin123
+  DATABASE_PASSWORD: Postgres2019!

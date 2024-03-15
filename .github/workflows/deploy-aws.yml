@@ -13,51 +13,45 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Configurar AWS CLI
+      - name: Configurar AWS CLI e contexto do cluster EKS
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+          eks-region: us-east-1
+          eks-cluster-name: sevenfood-eks-YY5zQ
           role-duration-seconds: 1200
-
-      - name: Instalar Git
-        run: sudo apt-get update && sudo apt-get install git -y
 
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.0
 
-      - name: Inicializar Terraform
-        run: terraform init
-        working-directory: infra/k8s/create-cluster-eks
+      - name: Executar testes
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+          java -version
+          mvn -version
+          mvn test
+        working-directory: ${{ github.workspace }}
 
-      - name: Planificar Configuração Terraform
-        run: terraform plan
-        working-directory: infra/k8s/create-cluster-eks
-
-      - name: Aplicar Configuração Terraform
-        run: terraform apply -auto-approve
-        working-directory: infra/k8s/create-cluster-eks
-
-      - name: construindo imagem e envinado para o Docker Hub
+      - name: Construir e enviar imagem Docker
+        if: success()
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
         run: |
-          docker build -t sua-aplicacao .
+          docker build -t sevenfood-api:latest .
           docker tag sevenfood-api:latest marrani/sevenfood-api:latest
           echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-          docker push marrani/sevenfood:latest
+          docker push marrani/sevenfood-api:latest
 
-      - name: Implantação do Banco de Dados no Cluster EKS
+      - name: Implantação da API no Cluster EKS
+        if: success()
         run: |
-          kubectl apply -f infra/k8s/db
+          kubectl apply -f infra/k8s/api/api-configmap.yaml
+          kubectl apply -f infra/k8s/api/api-deployment.yaml
+          kubectl apply -f infra/k8s/api/api-svc.yaml
         working-directory: ${{ github.workspace }}
-
-      - name: Implantação no Cluster EKS
-        run: |
-          kubectl apply -f infra/k8s/api
-        working-directory: ${{ github.workspace }}
-

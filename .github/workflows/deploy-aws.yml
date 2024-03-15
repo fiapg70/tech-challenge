@@ -40,7 +40,6 @@ jobs:
       - name: Implantação da API no Cluster EKS
         if: success()
         run: |
-         # kubectl apply -f infra/k8s/api/api-configmap.yaml --validate=false
           kubectl apply -f infra/k8s/api/api-deployment.yaml
           kubectl apply -f infra/k8s/api/api-svc.yaml
         working-directory: ${{ github.workspace }}

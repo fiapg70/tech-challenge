@@ -23,10 +23,21 @@ jobs:
           eks-cluster-name: sevenfood-eks-YY5zQ
           role-duration-seconds: 1200
 
+      - name: Configurar Minikube
+        uses: helaili/setup-minikube@v2
+        with:
+          minikube-version: latest
+          kubernetes-version: latest
+
+      - name: Iniciar Minikube
+        run: |
+          minikube start --vm-driver=virtualbox --kubernetes-version=latest
+
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.0
+
       - name: Construir e enviar imagem Docker
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -38,9 +49,8 @@ jobs:
           docker push marrani/sevenfood-api:latest
 
       - name: Implantação da API no Cluster EKS
-        if: success()
         run: |
-         # kubectl apply -f infra/k8s/api/api-configmap.yaml --validate=false
+          kubectl apply -f infra/k8s/api/api-configmap.yaml 
           kubectl apply -f infra/k8s/api/api-deployment.yaml
           kubectl apply -f infra/k8s/api/api-svc.yaml
         working-directory: ${{ github.workspace }}

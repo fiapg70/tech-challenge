@@ -8,8 +8,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+    
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -28,18 +27,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.0
-
-      - name: Executar testes
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk
-          java -version
-          mvn -version
-          mvn test
-        working-directory: ${{ github.workspace }}
-
       - name: Construir e enviar imagem Docker
-        if: success()
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}

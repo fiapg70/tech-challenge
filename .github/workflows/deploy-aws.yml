@@ -8,8 +8,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      KUBECONFIG: /etc/rancher/k3s/k3s.yaml
     
     steps:
       - name: Checkout do código
@@ -42,7 +40,7 @@ jobs:
       - name: Implantação da API no Cluster EKS
         if: success()
         run: |
-          kubectl apply -f infra/k8s/api/api-configmap.yaml
+          kubectl apply -f infra/k8s/api/api-configmap.yaml --validate=false
           kubectl apply -f infra/k8s/api/api-deployment.yaml
           kubectl apply -f infra/k8s/api/api-svc.yaml
         working-directory: ${{ github.workspace }}

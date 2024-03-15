@@ -23,11 +23,9 @@ jobs:
           eks-cluster-name: sevenfood-eks-YY5zQ
           role-duration-seconds: 1200
 
-      - name: Configurar Minikube
-        uses: helaili/setup-minikube@v2
-        with:
-          minikube-version: latest
-          kubernetes-version: latest
+      - name: Instalar Minikube
+        run: |
+          curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
 
       - name: Iniciar Minikube
         run: |
@@ -37,7 +35,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.1.0
-
+      
       - name: Construir e enviar imagem Docker
         env:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}

@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      KUBECONFIG: /etc/rancher/k3s/k3s.yaml
     
     steps:
       - name: Checkout do código

@@ -8,49 +8,41 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout do código
-        uses: actions/checkout@v4
-
-      - name: Instalar VirtualBox
-        run: |
-          sudo apt update
-          sudo apt install virtualbox -y
+        uses: actions/checkout@v3
+        
+      - name: Configurar AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
 
       - name: Configurar AWS CLI e contexto do cluster EKS
         uses: aws-actions/configure-aws-credentials@v1
+
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-          eks-region: us-east-1
-          eks-cluster-name: sevenfood-eks-YY5zQ
           role-duration-seconds: 1200
-
-      - name: Instalar Minikube
-        run: |
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-          sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
-      - name: Iniciar Minikube
-        run: |
-          minikube start --vm-driver=virtualbox --kubernetes-version=latest
 
       - name: Instalar Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: 1.1.0
+          terraform_version: 1.2.0
 
       - name: Construir e enviar imagem Docker
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: marrani/sevenfood-api:latest
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Configurar kubectl
         run: |
-          docker build -t sevenfood-api:latest .
-          docker tag sevenfood-api:latest marrani/sevenfood-api:latest
-          echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-          docker push marrani/sevenfood-api:latest
+          aws eks --region us-east-1 update-kubeconfig --name sevenfood-eks-YY5zQ
 
       - name: Implantação da API no Cluster EKS
         run: |

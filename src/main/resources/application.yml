@@ -1,5 +1,5 @@
 server:
-  port: 9991
+  port: 9992
   servlet:
     context-path: /api
   error:
@@ -39,6 +39,24 @@ spring:
   flyway:
     baselineOnMigrate: true
     locations: classpath:db/migration, classpath:db/callback
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+    region:
+      static: us-east-1
+  security:
+    oauth2:
+      client:
+        provider:
+          cognito:
+            issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_lLiNIC87U
+        registration:
+          cognito:
+            client-id: ${AWS_COGNITO_CLIENT_ID}
+            client-secret: ${AWS_COGNITO_CLIENT_SECRET}
+            scope: openid
 
 application:
   security:
@@ -47,3 +65,7 @@ application:
       expiration: 864000000 # 10 day
       refresh-token:
         expiration: 6048000000 # 70 days
+
+cognito:
+  user-pool-id: us-east-1_lLiNIC87U
+
